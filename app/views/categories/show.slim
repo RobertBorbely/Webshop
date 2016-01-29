@@ -1,6 +1,6 @@
-- @products.each do |product|
-  	h3=link_to product.name, product
-    p=product.description
-    span=product.price
-    span=product.count
-    =image_tag product.image.url, :size => "large"
+.row.small-up-2.medium-up-3.large-up-4
+  - @products.each do |product|
+    .column
+      =link_to product do
+        =image_tag product.image.url, :size => "medium"
+      h5.text-center=product.name

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160129151007) do
+ActiveRecord::Schema.define(version: 20160129194103) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -30,8 +30,13 @@ ActiveRecord::Schema.define(version: 20160129151007) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.text     "description"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
     t.string   "slug"
   end
 
@@ -60,9 +65,11 @@ ActiveRecord::Schema.define(version: 20160129151007) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
     t.string   "slug"
+    t.boolean  "featured",           default: false
+    t.boolean  "slider",             default: false
   end
 
   add_index "products", ["category_id"], name: "index_products_on_category_id"
@@ -82,6 +89,11 @@ ActiveRecord::Schema.define(version: 20160129151007) do
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.string   "role"
+    t.string   "name"
+    t.string   "city"
+    t.string   "country"
+    t.string   "postcode"
+    t.string   "street"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

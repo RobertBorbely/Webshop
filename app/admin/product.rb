@@ -1,5 +1,5 @@
 ActiveAdmin.register Product do
-  permit_params :name, :description, :price, :count, :image, :slug, :category_id
+  permit_params :name, :description, :price, :count, :image, :slug, :category_id, :slider, :featured
 
   controller do
     def find_resource
@@ -18,12 +18,16 @@ ActiveAdmin.register Product do
     column :count
     column :image
     column :category_id
+    column :slider
+    column :featured
     actions
   end
 
   filter :name
   filter :price
   filter :category_id
+  filter :featured
+  filter :slider
 
   form do |f|
     f.inputs "Products details" do
@@ -33,6 +37,8 @@ ActiveAdmin.register Product do
       f.input :count
       f.input :image
       f.input :category_id
+      f.input :featured
+      f.input :slider
     end
     f.actions
   end
