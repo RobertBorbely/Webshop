@@ -17,6 +17,7 @@
     label Size
     =@product.count
     a.button.large.expanded Buy Now
+    =button_to 'Buy Now',  action: "add_to_cart" 
     .small.secondary.expanded.button-group
       a.button Facebook
       a.button Twitter

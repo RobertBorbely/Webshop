@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   resources :categories
   resources :products
 
+  post 'products/:id', to: 'products#add_to_cart'
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
