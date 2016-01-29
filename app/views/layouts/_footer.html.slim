@@ -4,16 +4,9 @@
       h5 Vivamus Hendreit Arcu Sed Erat molestie
       p  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero numquam suscipit iste ea quod porro consequuntur totam, ducimus dignissimos impedit. Saepe laborum id, ex eos ut. Cumque, aperiam ducimus quas.
 
-    .large-3.large-offset-2.columns
-      ul.menu.vertical
-        li First
-        li Second
-        li Third
-        li Fourth
-
-    .large-3.columns
-      ul.menu.vertical
-        li First
-        li Second
-        li Third
-        li Fourth
+    - Menu.bottom_menus.each do |menu|
+      .large-3.columns
+        h5 =menu.title
+        ul.menu.vertical
+          - menu.menu_items.each do |menu_item|
+            li=link_to menu_item.title, menu_item.url
