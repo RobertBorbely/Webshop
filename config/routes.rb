@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   #devise_for :users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   resources :users
@@ -11,6 +12,7 @@ Rails.application.routes.draw do
 
   resources :categories
   resources :products
+  resources :pages
 
   post 'products/:id', to: 'products#add_to_cart'
 
