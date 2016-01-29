@@ -1,0 +1,23 @@
+.top-bar
+  .top-bar-left
+    ul.menu
+      li.menu-text Webshop
+      li
+        =link_to "Categories", categories_path
+      li
+        =link_to "Products", products_path
+  .top-bar-right
+    ul.menu
+      -if user_signed_in?
+        li
+          =link_to 'Log out', destroy_user_session_path, method: :delete
+        li
+          =link_to 'Admin panel', admin_root_url 
+        li
+          =current_user.email
+      -else
+        li
+          = link_to('Login', new_user_session_path)
+
+
+
