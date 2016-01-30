@@ -2,7 +2,9 @@ class ProductsController < ApplicationController
   before_action :find_by_id, only: [:show,:add_to_cart]
   
   def index
-  	@products = Product.all
+  	#@products = Product.all
+
+    @products = Product.search(params[:search])
   end
 
   def show

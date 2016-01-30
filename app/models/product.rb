@@ -10,4 +10,13 @@ class Product < ActiveRecord::Base
 		slug.blank? || name_changed?
 	end
 
+  def self.search(search)
+    wildcard_search = "%#{search}%"
+    if search
+      where('name LIKE :search', search: wildcard_search)
+    else
+      all
+    end
+  end
+
 end
