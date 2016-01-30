@@ -10,7 +10,7 @@ class ProductsController < ApplicationController
   end
 
   def add_to_cart
-    @cart = Cart.create
+    @cart = ShoppingCart.create
 
     @cart.add(@product, @product.price, @product.count)
   end
