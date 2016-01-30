@@ -11,9 +11,12 @@ Rails.application.routes.draw do
   root 'welcome#index'
 
   resources :categories
-  resources :products
+  resources :products do
+    resources :reviews, except: [:show, :index]
+  end
   resources :pages
   resources :menu_items, :menus
+  
 
   post 'products/:id', to: 'products#add_to_cart'
 
