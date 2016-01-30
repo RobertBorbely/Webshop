@@ -12,13 +12,23 @@ Rails.application.routes.draw do
 
   resources :categories
   resources :products do
+    member do
+      post :add_to_cart
+    end
     resources :reviews, except: [:show, :index]
   end
   resources :pages
   resources :menu_items, :menus
-  
+
+  resources :shopping_carts do
+    collection do
+      get :my_cart
+      delete :remove
+    end
+  end  
 
   post 'products/:id', to: 'products#add_to_cart'
+  post 'products/:id', to: 'products#clear'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

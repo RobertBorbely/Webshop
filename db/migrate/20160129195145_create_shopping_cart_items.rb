@@ -3,9 +3,6 @@ class CreateShoppingCartItems < ActiveRecord::Migration
     create_table :shopping_cart_items do |t|
 
       t.timestamps null: false
-    end
-    
-    create_table :cart_items do |t|
       t.shopping_cart_item_fields
     end
   end

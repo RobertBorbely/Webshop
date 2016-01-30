@@ -28,15 +28,6 @@ ActiveRecord::Schema.define(version: 20160130103830) do
   add_index "active_admin_comments", ["namespace"], name: "index_active_admin_comments_on_namespace"
   add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
 
-  create_table "cart_items", force: :cascade do |t|
-    t.integer "owner_id"
-    t.string  "owner_type"
-    t.integer "quantity"
-    t.integer "item_id"
-    t.string  "item_type"
-    t.float   "price"
-  end
-
   create_table "categories", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
@@ -130,6 +121,12 @@ ActiveRecord::Schema.define(version: 20160130103830) do
   create_table "shopping_cart_items", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "owner_id"
+    t.string   "owner_type"
+    t.integer  "quantity"
+    t.integer  "item_id"
+    t.string   "item_type"
+    t.float    "price"
   end
 
   create_table "shopping_carts", force: :cascade do |t|

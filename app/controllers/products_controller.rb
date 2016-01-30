@@ -1,20 +1,19 @@
 class ProductsController < ApplicationController
-  before_action :find_by_id, only: [:show,:add_to_cart]
+  before_action :find_by_id, only: [:show,:add_to_cart, :clear]
   
   def index
-  	#@products = Product.all
-
     @products = Product.search(params[:search])
   end
 
   def show
-    
+
   end
 
   def add_to_cart
     @cart = ShoppingCart.create
-
-    @cart.add(@product, @product.price, @product.count)
+    @cart_value = @cart.total
+    @cart.add(@product, @product.price)
+    redirect_to :back
   end
 
   private 
