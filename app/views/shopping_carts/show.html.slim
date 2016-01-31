@@ -16,7 +16,6 @@ div.pure-g-r
             td= link_to sci.item.name, sci.item
 
             td= sci.quantity
-            -#%td= sci.item.price * sci.quantity * 1.27
 
             td= link_to 'Törlök egy darabot', remove_shopping_carts_path(product_id: sci.item, quantity: 1), method: :delete, class: "pure-button"
             td= link_to 'Törlöm az elemet', remove_shopping_carts_path(product_id: sci.item, quantity: sci.quantity,), method: :delete, class: "pure-button"
@@ -28,6 +27,6 @@ div.pure-g-r
         = number_to_currency @shopping_cart.total
         span.button_right_align style="float: right"
           - if @shopping_cart.shopping_cart_items.count < 1
-            = link_to "Megrendelem", '#', class: "pure-button pure-button-primary", disabled: true
+            = link_to "Megrendelem", orders_path, class: "pure-button pure-button-primary", disabled: true
           - else
-            = link_to "Megrendelem", '#', class: "pure-button pure-button-primary"
+            = link_to "Megrendelem", new_order_path, class: "pure-button pure-button-primary"

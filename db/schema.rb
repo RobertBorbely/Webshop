@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160130103830) do
+ActiveRecord::Schema.define(version: 20160131102937) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -75,6 +75,21 @@ ActiveRecord::Schema.define(version: 20160130103830) do
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
+
+  create_table "orders", force: :cascade do |t|
+    t.boolean  "completed"
+    t.text     "notification_params"
+    t.string   "status"
+    t.string   "transaction_id"
+    t.datetime "purchased_at"
+    t.integer  "shopping_cart_id"
+    t.integer  "user_id"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
+  add_index "orders", ["shopping_cart_id"], name: "index_orders_on_shopping_cart_id"
+  add_index "orders", ["user_id"], name: "index_orders_on_user_id"
 
   create_table "pages", force: :cascade do |t|
     t.string   "title"

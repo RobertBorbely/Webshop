@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :reviews, dependent: :destroy 
+  has_many :orders
 
   def role?(r)
     role.include? r.to_s

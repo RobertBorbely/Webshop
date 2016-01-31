@@ -22,6 +22,7 @@ class ShoppingCartsController < ApplicationController
     render 'show'
   end
 
+
   private
     def extract_shopping_cart
       shopping_cart_id = session[:shopping_cart_id]
