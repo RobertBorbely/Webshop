@@ -24,11 +24,14 @@ class OrdersController < ApplicationController
 
   protect_from_forgery except: [:hook]
   def hook
+    Rails.logger.info(params.inspect)
     params.permit!
     status = params[:payment_status]
     if status == "Completed"
       @order = Order.find(params[:invoice])
-      @order.update_attributes notification_params: params, status: status, transaction_id: params[:txn_id], purchased_at: Time.now
+      @order.update_attributes status: status, transaction_id: params["txn_id"], purchased_at: Time.now
+      @cart = ShoppingCart.create
+      session[:shopping_cart_id] = @cart.id
     end
     render nothing: true
   end

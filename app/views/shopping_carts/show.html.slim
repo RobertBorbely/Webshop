@@ -1,32 +1,31 @@
-h1 Kosaram
 
-div.pure-g-r
-  div.pure-u-7-8
-    table.pure-table.pure-table-horizontal.pure-table-width
-      thead
-        th Termék neve
-        th Csomag
-        th Darabszám
-        th Ár
-        th
-        th
-      tbody
-        - @shopping_cart.shopping_cart_items.each do |sci|
-          tr
-            td= link_to sci.item.name, sci.item
 
-            td= sci.quantity
+.row
+  h1 Kosaram
+  table
+    thead
+      th Termék neve
+      th Darabszám
+      th Ár
+      th
+      th
+    tbody
+      - @shopping_cart.shopping_cart_items.each do |sci|
+        tr
+          td= link_to sci.item.name, sci.item
 
-            td= link_to 'Törlök egy darabot', remove_shopping_carts_path(product_id: sci.item, quantity: 1), method: :delete, class: "pure-button"
-            td= link_to 'Törlöm az elemet', remove_shopping_carts_path(product_id: sci.item, quantity: sci.quantity,), method: :delete, class: "pure-button"
-    br
-    hr.pure-table-width
-    div
-      div
-        b Fizetendő:
-        = number_to_currency @shopping_cart.total
-        span.button_right_align style="float: right"
-          - if @shopping_cart.shopping_cart_items.count < 1
-            = link_to "Megrendelem", orders_path, class: "pure-button pure-button-primary", disabled: true
-          - else
-            = link_to "Megrendelem", new_order_path, class: "pure-button pure-button-primary"
+          td= sci.quantity
+          td= sci.price
+          td= link_to 'Törlök egy darabot', remove_shopping_carts_path(product_id: sci.item, quantity: 1), method: :delete, class: "pure-button"
+          td= link_to 'Törlöm az elemet', remove_shopping_carts_path(product_id: sci.item, quantity: sci.quantity,), method: :delete, class: "pure-button"
+  br
+  hr
+.row
+  div
+    b Fizetendő:
+    = number_to_currency @shopping_cart.total/280
+    span style="float: right"
+      - if @shopping_cart.shopping_cart_items.count < 1
+        = link_to "Megrendelem", orders_path, class: "button succes", disabled: true
+      - else
+        = link_to "Megrendelem", new_order_path, class: "button success"

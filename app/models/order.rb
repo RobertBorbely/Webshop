@@ -15,9 +15,10 @@ class Order < ActiveRecord::Base
       item_name: shopping_cart.shopping_cart_items.name,
       item_number: shopping_cart.shopping_cart_items.ids,
       quantity: '1',
-      currency_code: 'EUR',
+      currency_code: 'USD',
       notify_url: "#{Rails.application.secrets.app_host}/hook"
     }
     "#{Rails.application.secrets.paypal_host}/cgi-bin/webscr?" + values.to_query
   end
+
 end

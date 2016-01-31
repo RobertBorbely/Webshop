@@ -13,22 +13,19 @@
   .medium-6.large-5.columns
     h3=@product.name
     p=@product.description
-    p=@product.price
-    label Size
-    =@product.count
-    a.button.large.expanded Buy Now
-    =button_to 'Buy Now',  action: "add_to_cart" 
+    span Price
+    span.right ="#{@product.price} Ft"
+    -if user_signed_in?
+      = form_tag shopping_carts_path, method: :post, id: "product-form-#{@product.id}", data:{product_price: @product.price} do
+              = hidden_field_tag :product_id, @product.id
+              = text_field_tag :item_count, nil, value: "1", data: {product_id: @product.id}, id: "amount-#{@product.id}"
+
+              = submit_tag "Kosárba", class: "button success expanded"
     .small.secondary.expanded.button-group
       a.button Facebook
       a.button Twitter
       a.button Pinterest
-= form_tag shopping_carts_path, method: :post, id: "product-form-#{@product.id}", class: "pure-form pure-form-aligned}", data:{product_price: @product.price} do
-            = hidden_field_tag :product_id, @product.id
-            .pure-u-1-3
-              = text_field_tag :item_count, nil, value: "1", class: "pure-input-1-2 product-count-field", data: {product_id: @product.id}, id: "amount-#{@product.id}"
-            .pure-u-1-3
-            .pure-u-1-4
-              = submit_tag "Kosárba", class: "pure-button pure-button-primary"
+
 
 .column.row
   hr
@@ -36,11 +33,12 @@
   - @product.reviews.each do |review|
     .media-object.stack-for-small
       .media-object-section
-        =review.user.name
+        img.thumbnail src="http://placehold.it/150x150"
       .media-object-section
-        h5 =review.rating
+        h5=review.user.name
+        span=review.rating
         p =review.text 
-
-  =link_to "Write a review", new_product_review_path(@product)
+  -if user_signed_in?
+    =link_to "Write a review", new_product_review_path(@product)
 
 
