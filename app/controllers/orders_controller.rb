@@ -26,7 +26,7 @@ class OrdersController < ApplicationController
   def hook
     params.permit!
     status = params[:payment_status]
-    if status == "SUCCESS"
+    if status == "Completed"
       @order = Order.find(params[:invoice])
       @order.update_attributes notification_params: params, status: status, transaction_id: params[:txn_id], purchased_at: Time.now
     end

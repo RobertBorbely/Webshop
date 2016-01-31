@@ -9,6 +9,7 @@ class Order < ActiveRecord::Base
       cmd: "_xclick",
       upload: 1,
       return: "#{Rails.application.secrets.app_host}#{return_path}",
+      at: "#{Rails.application.secrets.pp}",
       invoice: id,
       amount: shopping_cart.total,
       item_name: shopping_cart.shopping_cart_items.name,

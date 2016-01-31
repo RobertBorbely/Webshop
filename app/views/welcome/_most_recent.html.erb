@@ -1,8 +1,13 @@
 <div class="row small-up-2 medium-up-3 large-up-4">
   <h2>Most recent Products:</h2>
   <% @products_recent.each do |product| %>
-    <div class="columns"><%=link_to product do %>
+    <div class="columns">
+      <%=link_to product do %>
         <%=image_tag product.image.url, size: "medium", class: "thumbnail"%>
-      <% end %></div>
+      <% end %>
+      <h4><%= product.name %></h2>
+      <p><%= product.description.truncate(130) %></p>
+      <%= link_to 'Buy Now!', product_path(product), class: "button success expanded" %>
+    </div>
   <% end %>
 </div>
