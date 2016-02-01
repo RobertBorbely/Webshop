@@ -6,14 +6,9 @@ class ProductsController < ApplicationController
   end
 
   def show
-
-  end
-
-  def add_to_cart
-    @cart = ShoppingCart.create
-    @cart_value = @cart.total
-    @cart.add(@product, @product.price)
-    redirect_to :back
+    if @product.count == 0
+      @notavaliable = true
+    end
   end
 
   private 

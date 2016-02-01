@@ -4,8 +4,14 @@ class ShoppingCartsController < ApplicationController
 
   def create
     @product = Product.friendly.find(params[:product_id])
-    @shopping_cart.add(@product, @product.price,params[:item_count].to_i)
-    redirect_to :back
+    if @product.count >= params[:item_count].to_i
+      @shopping_cart.add(@product, @product.price,params[:item_count].to_i)
+      @product.update_attributes count: (@product.count - params[:item_count].to_i)
+      redirect_to :back , notice: "Product added to cart!"
+    else
+      redirect_to :back, notice: "You want to add to much please add less then #{@product.count}!"
+    end
+    
   end
 
   def show

@@ -2,25 +2,23 @@
   .medium-6.columns
     =image_tag @product.image.url, :size => "medium", class: "thumbnail"
     .row.small-up-4
-      .column
-        =image_tag @product.image.url, :size => "medium", class: "thumbnail"
-      .column
-        =image_tag @product.image.url, :size => "medium", class: "thumbnail"
-      .column
-        =image_tag @product.image.url, :size => "medium", class: "thumbnail"
-      .column
-        =image_tag @product.image.url, :size => "medium", class: "thumbnail"
+      - @product.attachments.each do |a|
+        .column
+          = image_tag a.image.url(:medium), class: "thumbnail"
   .medium-6.large-5.columns
     h3=@product.name
     p=@product.description
     span Price
-    span.right ="#{@product.price} Ft"
+    span.right =number_to_currency @product.price
     -if user_signed_in?
-      = form_tag shopping_carts_path, method: :post, id: "product-form-#{@product.id}", data:{product_price: @product.price} do
-              = hidden_field_tag :product_id, @product.id
-              = text_field_tag :item_count, nil, value: "1", data: {product_id: @product.id}, id: "amount-#{@product.id}"
+      - unless @notavaliable
+        = form_tag shopping_carts_path, method: :post, id: "product-form-#{@product.id}", data:{product_price: @product.price} do
+                = hidden_field_tag :product_id, @product.id
+                = text_field_tag :item_count, nil, value: "1", data: {product_id: @product.id}, id: "amount-#{@product.id}"
 
-              = submit_tag "Kosárba", class: "button success expanded"
+                = submit_tag "Kosárba", class: "button success expanded"
+      -else
+        h3 Sold out!
     .small.secondary.expanded.button-group
       a.button Facebook
       a.button Twitter

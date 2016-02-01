@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160201113050) do
+ActiveRecord::Schema.define(version: 20160201115319) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -27,6 +27,18 @@ ActiveRecord::Schema.define(version: 20160201113050) do
   add_index "active_admin_comments", ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id"
   add_index "active_admin_comments", ["namespace"], name: "index_active_admin_comments_on_namespace"
   add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
+
+  create_table "attachments", force: :cascade do |t|
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.integer  "product_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  add_index "attachments", ["product_id"], name: "index_attachments_on_product_id"
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"

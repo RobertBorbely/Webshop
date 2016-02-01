@@ -7,7 +7,7 @@
         h5.text-center=product.name
         p.text-cente =product.description.truncate(80)
         span.price-label Price
-        span.price.right ="#{product.price} Ft"
+        span.price.right =number_to_currency product.price
         =link_to "Buy Now!", product_path(product), class: "button success expanded"
 
   .medium-3.columns
@@ -17,5 +17,5 @@
         =submit_tag "Search", :name => nil, class: "button info expanded"
     h5 Recent Products
     ul.side-nav
-      -@products.each do |product|
+      -@products.order("created_at desc").each do |product|
         li =link_to product.name, product_path(product)

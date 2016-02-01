@@ -23,7 +23,7 @@
 .row
   div
     b Fizetendő:
-    = number_to_currency @shopping_cart.total/280
+    = number_to_currency @shopping_cart.total
     span style="float: right"
       - if @shopping_cart.shopping_cart_items.count < 1
         = link_to "Megrendelem", orders_path, class: "button succes", disabled: true

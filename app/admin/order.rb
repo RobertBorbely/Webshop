@@ -17,7 +17,6 @@ ActiveAdmin.register Order do
     column :status
     column :transaction_id
     column :purchased_at
-    column :user_id
     actions
   end
 
@@ -28,6 +27,16 @@ ActiveAdmin.register Order do
       f.input :completed
     end
     f.actions
+  end
+
+  show do |order|
+    attributes_table do
+      row :completed
+      row :status       
+      row :transaction_id
+      row :purchased_at
+      row :user_id,:as => :select, :collection => User.name
+    end
   end
 
 end
