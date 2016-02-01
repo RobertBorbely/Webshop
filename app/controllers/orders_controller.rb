@@ -30,6 +30,9 @@ class OrdersController < ApplicationController
     if status == "Completed"
       @order = Order.find(params[:invoice])
       @order.update_attributes status: status, transaction_id: params["txn_id"], purchased_at: Time.now
+      user_id = @order.user_id
+      @user = User.find(user_id)
+      @user.update_attributes name: params[:address_name], country: params[:address_country_code], street: params[:address_street], postcode: params[:address_zip], city: params[:address_city]
       @cart = ShoppingCart.create
       session[:shopping_cart_id] = @cart.id
     end

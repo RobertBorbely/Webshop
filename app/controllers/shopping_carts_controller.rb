@@ -21,7 +21,8 @@ class ShoppingCartsController < ApplicationController
   def remove
     @product = Product.friendly.find(params[:product_id])
     @shopping_cart.remove(@product, params[:quantity].present? ? params[:quantity].to_i : 1)
-    redirect_to :back
+    @product.update_attributes count: (@product.count + 1)
+    redirect_to :back, notice: "We reduced your cart succesful!"
   end
 
   def my_cart
