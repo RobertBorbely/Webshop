@@ -4,10 +4,7 @@ class Product < ActiveRecord::Base
   has_many :reviews, dependent: :destroy
   has_many :attachments
 
-  has_attached_file :image, styles: { tumbnail: "150x150", medium: "600x600", large: "1920x1080"},
-      :url => "/system/:attachment/:id/:style/:basename.:extension",
-      :path => ":rails_root/public/system/:attachment/:id/:style/:basename.:extension"
-      
+  has_attached_file :image, styles: { tumbnail: "150x150", medium: "600x600", large: "1920x1080"}
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 
   accepts_nested_attributes_for :attachments, allow_destroy: true
