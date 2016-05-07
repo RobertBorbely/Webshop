@@ -2,6 +2,9 @@ class ShoppingCartsController < ApplicationController
 
   before_filter :extract_shopping_cart
 
+  def index
+  end
+
   def create
     @product = Product.friendly.find(params[:product_id])
     if @product.count >= params[:item_count].to_i

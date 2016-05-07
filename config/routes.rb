@@ -2,7 +2,6 @@ Rails.application.routes.draw do
 
   #devise_for :users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  resources :users
   devise_for :users, :path => "/user", :path_names => { :sign_up => 'signup', :sign_in => 'login', :sign_out => 'logout' }
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -20,12 +19,11 @@ Rails.application.routes.draw do
   resources :pages
   resources :menu_items, :menus
 
-  resources :shopping_carts do
+  resources :shopping_carts, path: '/cart' do
     collection do
-      get :my_cart
       delete :remove
     end
-  end  
+  end
 
   resources :orders
 
