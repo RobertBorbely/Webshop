@@ -24,6 +24,7 @@ ActiveAdmin.register Category do
     f.inputs "Categories details" do
       f.input :name
       f.input :description
+      f.input :parent_id
       f.input :image
     end
     f.actions
