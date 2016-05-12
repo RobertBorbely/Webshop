@@ -10,6 +10,7 @@ class Menu < ActiveRecord::Base
   scope :bottom_menus, -> { where(place: 2) }
 
   scope :ordered_by_priority, -> { order( priority: :asc) }
+
   private
   def header_menu_size
     errors.add(:base, "You want than #{HEADER_MENU_COUNT} header menu link") if place.eql?(1) && Menu.header_menus.count>=HEADER_MENU_COUNT

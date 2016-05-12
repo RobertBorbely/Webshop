@@ -1,0 +1,10 @@
+.headline
+  %h1 Categories
+  %hr/
+.categories
+  - @categories.each do |category|
+    .category
+      %h2.text-center=category.name
+      =link_to category do
+        =image_tag category.image.url, :size => "medium"
+      %p.text-center=category.description

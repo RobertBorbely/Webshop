@@ -34,6 +34,11 @@ gem 'devise'
 gem 'friendly_id', '~> 5.1.0'
 gem 'country_select'
 gem 'acts_as_shopping_cart', '~> 0.2.1'
+gem 'bourbon', '~> 4.2.6'
+gem 'haml-rails'
+gem 'neat'
+gem 'bitters', '~> 1.2.0'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

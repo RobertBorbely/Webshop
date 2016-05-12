@@ -1,0 +1,32 @@
+.cart-container {
+  @include row;
+  text-align: center;
+
+  .row {
+    text-align: left;
+
+    h1 {
+      text-align: center;
+    }
+
+    div {
+      text-align: center;
+      .btn {
+        width: 100%;
+        float: left;
+        color: white;
+        display: block;
+        background-color: lighten(green, 10);
+        padding-top: 10px;
+        padding-bottom: 10px;
+        transition: all 0.2s ease-in-out;
+        margin-top: 20px;
+
+        &:hover {
+          background-color: darken(green, 5);
+        }
+      }
+    }
+  }
+
+}

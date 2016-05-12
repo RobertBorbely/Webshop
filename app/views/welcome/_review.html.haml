@@ -1,0 +1,9 @@
+.review
+  %h1 Our happy customers opinion!
+  .img-container
+    =link_to product_path(@products_recent) do
+      =image_tag @products_recent.image.url, size: "medium"
+  .review-content
+    %h2=@products_recent.name
+    %p=@products_recent.reviews.first.text
+    .rating{"data-rating": "#{@products_recent.reviews.first.rating}"}

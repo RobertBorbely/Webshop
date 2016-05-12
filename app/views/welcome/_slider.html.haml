@@ -1,0 +1,7 @@
+.slider
+  -@products_slider.each do |p|
+    .slide
+      =link_to p do
+        =image_tag p.image.url, size: :large
+      %h2=p.name.truncate(25)
+      %p=p.description.truncate(120)

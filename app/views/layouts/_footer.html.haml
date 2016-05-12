@@ -1,0 +1,10 @@
+%footer.footer{:role => "contentinfo"}
+  .footer-links
+    - Menu.bottom_menus.each do |menu|
+      %ul
+        %li
+          %h3=menu.title
+        - menu.menu_items.each do |menu_item|
+          %li=link_to menu_item.title, menu_item.url
+  %hr
+    %p Webáruház megtervezésének és megvalósításának folyamata Ruby on Rails alapokon készítette Borbély Róbert Dániel

@@ -1,0 +1,11 @@
+.headline
+  %h1=@category.name
+  %hr/
+.products.index
+  -@products.each do |p|
+    .product{style: "margin-bottom: 50px"}
+      %h2=p.name.truncate(40)
+      %span=number_to_currency p.price
+      =link_to p do
+        =image_tag p.image.url, size: :medium
+      =link_to 'Buy Now!', product_path(p), class: 'btn'

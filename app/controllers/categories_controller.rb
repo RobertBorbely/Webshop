@@ -1,5 +1,6 @@
 class CategoriesController < ApplicationController
   before_action :find_by_id, only: [:show]
+  
 	def index
 		@categories = Category.all
 	end

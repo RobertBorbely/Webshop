@@ -1,5 +1,5 @@
 ActiveAdmin.register Order do
-  permit_params :completed, :status, :user_id
+  permit_params :completed, :status, :user_id, :shopping_cart_id
 
   # controller do
   #   def find_resource

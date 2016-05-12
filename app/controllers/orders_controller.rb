@@ -1,4 +1,7 @@
 class OrdersController < ApplicationController
+
+  before_filter :extract_shopping_cart, only: [:new]
+
   def index
   end
 
@@ -40,7 +43,13 @@ class OrdersController < ApplicationController
   end
 
   private
-  def order_params
-    params.require(:order).permit(:completed, :status, :transaction_id, :user_id, :shopping_cart_id, :purchased_at)
-  end
+    def order_params
+      params.require(:order).permit(:completed, :status, :transaction_id, :user_id, :shopping_cart_id, :purchased_at)
+    end
+
+    def extract_shopping_cart
+      shopping_cart_id = session[:shopping_cart_id]
+      @shopping_cart = session[:shopping_cart_id] ? ShoppingCart.find(shopping_cart_id) : ShoppingCart.create
+      session[:shopping_cart_id] = @shopping_cart.id
+    end
 end

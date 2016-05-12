@@ -1,0 +1,39 @@
+.product-container
+  %h1=@product.name
+  %hr/
+  %h4=number_to_currency @product.price
+  .img-container
+    =image_tag @product.image.url, :size => "medium"
+    .attachments
+      - @product.attachments.each do |a|
+        .image
+          =image_tag a.image.url(:medium)
+  .details-container
+    %p=@product.description
+    -if user_signed_in?
+      - unless @notavaliable
+        = form_tag shopping_carts_path, method: :post, id: "product-form-#{@product.id}", data:{product_price: @product.price} do
+          = hidden_field_tag :product_id, @product.id
+          Quantity:
+          = text_field_tag :item_count, nil, value: "1", data: {product_id: @product.id}, id: "amount-#{@product.id}"
+
+          = submit_tag "Kosárba", class: "btn"
+      -else
+        %h3 Sold out!
+
+
+.reviews-container
+  %hr
+  %h3 Reviews
+  - @product.reviews.each do |review|
+    .media-object.stack-for-small
+      .media-object-section
+        %hr
+        %h5=review.user.name
+        .rating{"data-rating": "=review.rating"}
+        %p=review.text 
+        %hr
+  -if user_signed_in?
+    =link_to "Write a review", new_product_review_path(@product), class: "review-btn"
+
+

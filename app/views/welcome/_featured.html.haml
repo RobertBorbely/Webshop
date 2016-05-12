@@ -1,0 +1,7 @@
+.products
+  %h1 Check out these featured items!
+  - @products_featured.each do |p|
+    .product
+      %h2=p.name
+      =link_to p do
+        =image_tag p.image.url, size: "medium"

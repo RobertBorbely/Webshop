@@ -1,0 +1,13 @@
+.categories {
+  @include span-columns(12);
+  text-align: center; 
+
+  .category {
+    @include span-columns(12);
+
+    @include media(480px) {
+      @include span-columns(6);
+      @include omega(2n);
+    }
+  }
+}

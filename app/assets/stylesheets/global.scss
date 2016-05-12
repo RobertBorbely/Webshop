@@ -1,0 +1,186 @@
+@font-face {
+  font-family: 'ArquitectaLight';
+  src:url('ArquitectaLight.otf');
+  src:url('ArquitectaLight') format('otf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Arquitecta';
+  src:url('Arquitecta.otf');
+  src:url('Arquitecta') format('otf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'ArquitectaLight';
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Arquitecta';
+}
+
+img {
+  width: 100%;
+  display: block;
+}
+
+h1 {
+  font-size: 28px;
+  margin-bottom: 30px;
+}
+
+h2 {
+  font-size: 20px;
+  color: lighten(black, 20%);
+}
+.stars-container {
+  position: relative;
+  display: inline-block;
+  color: transparent;
+}
+
+.stars-container:before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: '★★★★★';
+  color: lightgray;
+}
+
+.stars-container:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: '★★★★★';
+  color: gold;
+  overflow: hidden;
+}
+
+.stars-0:after { width: 0%; }
+.stars-1:after { width: 20%; }
+.stars-2:after { width: 40%; }
+.stars-3:after { width: 60%; }
+.stars-4:after { width: 80%; }
+.stars-5:after { width: 100%; }
+
+.main-wrapper {
+  @include outer-container(960px);
+  padding-right: 30px;
+  padding-left: 30px;
+
+  .login-form {
+    width: 100%;
+
+    @include media(480px) {
+      width: 50%;
+      margin-right: auto;
+      margin-left: auto;
+    }
+
+    label {
+      margin-bottom: 10px;
+    }
+  }
+
+  .headline {
+    text-align: center;
+  }
+
+  .index {
+    .product {
+      @include span-columns(12);
+      margin-bottom: 30px;
+
+      @include media(480px) {
+        @include span-columns(4);
+        @include omega(3n);
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  .products {
+    @include row;
+    margin-bottom: 50px;
+    text-align: center;
+
+    @include media(480px) {
+      margin-bottom: 80px;
+    }
+
+    .product {
+      @include span-columns(12);
+      margin-bottom: 30px;
+
+      @include media(480px) {
+        @include span-columns(4);
+        margin-bottom: 0;
+      }
+
+      h2 {
+        margin-bottom: 20px;
+        text-align: center;
+      }
+
+      span {
+        display: block;
+        text-align: center;
+        margin-bottom: 10px;
+      }
+
+      .btn {
+        width: 100%;
+        color: white;
+        display: block;
+        background-color: lighten(green, 10);
+        padding-top: 10px;
+        padding-bottom: 10px;
+        transition: all 0.2s ease-in-out;
+
+        &:hover {
+          background-color: darken(green, 5);
+        }
+      }
+    }
+  }
+
+  .review {
+    @include span-columns(12);
+    background: #eee;
+    padding: 20px 30px 20px 30px;
+
+    @include media(480px) {
+      padding: 20px 50px 20px 50px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .img-container {
+      @include span-columns(12);
+
+      @include media(480px) {
+        @include span-columns(4);
+      }
+    }
+    .review-content {
+      @include span-columns(12);
+
+      @include media(480px) {
+        @include span-columns(8);
+      }
+    }
+  }
+}

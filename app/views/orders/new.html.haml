@@ -1,0 +1,36 @@
+.cart-container
+  .row
+    %h1 Please confirm your order!
+    %hr/
+    %table
+      %thead
+        %th Product name
+        %th Quantity
+        %th Price
+        %th
+        %th
+      %tbody
+        - @shopping_cart.shopping_cart_items.each do |sci|
+          %tr
+            %td= link_to sci.item.name.truncate(30), sci.item
+
+            %td= sci.quantity
+            %td= sci.price
+            %td
+              = link_to remove_shopping_carts_path(product_id: sci.item, quantity: 1), method: :delete, class: "pure-button" do
+                %i.fa.fa-minus-circle
+            %td
+              = link_to remove_shopping_carts_path(product_id: sci.item, quantity: sci.quantity,), method: :delete, class: "pure-button" do
+                %i.fa.fa-trash
+    %br
+    %hr
+  .row
+    %div
+      %b Sum:
+      = number_to_currency @shopping_cart.total
+      %span{style: "float: right;"}
+      = form_for @order do |f|
+        .actions
+          =f.submit "Megerősít", class: "btn"
+
+

@@ -12,9 +12,9 @@ class Order < ActiveRecord::Base
       at: "#{Rails.application.secrets.pp}",
       invoice: id,
       amount: shopping_cart.total,
-      item_name: shopping_cart.shopping_cart_items.name,
+      item_name: shopping_cart.shopping_cart_items.first.item.name,
       item_number: shopping_cart.shopping_cart_items.ids,
-      quantity: '1',
+      quantity: shopping_cart.shopping_cart_items.count,
       currency_code: 'USD',
       notify_url: "#{Rails.application.secrets.app_host}/hook"
     }
