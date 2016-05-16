@@ -30,7 +30,7 @@
       .media-object-section
         %hr
         %h5=review.user.name
-        .rating{"data-rating": "=review.rating"}
+        .rating{"data-rating": review.rating}
         %p=review.text 
         %hr
   -if user_signed_in?

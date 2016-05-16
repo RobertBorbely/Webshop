@@ -24,7 +24,6 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
   end
 
-
   protect_from_forgery except: [:hook]
   def hook
     Rails.logger.info(params.inspect)

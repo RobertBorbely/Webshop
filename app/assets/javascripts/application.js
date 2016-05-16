@@ -52,7 +52,7 @@ $(document).ready(function() {
       .appendTo($domElement);
   }
 
-  addScore($stars, $(".rating"));
+  addScore($(".rating").data("rating"), $(".rating"));
 
   $menuToggle.on("click", function(e) {
     e.preventDefault();
